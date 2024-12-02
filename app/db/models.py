@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, String, Text, Enum, Date, ForeignKey, DateTime
+from sqlalchemy import Column, Integer, String, Text, Enum, Date, ForeignKey, DateTime, Float
 from sqlalchemy.orm import relationship
 from sqlalchemy.sql import func
 from app.db.database import Base
@@ -67,3 +67,18 @@ class GameResult(Base):
     home_score = Column(Integer, nullable=False)
     away_score = Column(Integer, nullable=False)
     game_date = Column(Date, nullable=False)
+
+class Standings(Base):
+    __tablename__ = "Standings"
+
+    id = Column(Integer, primary_key=True, index=True, autoincrement=True)
+    league = Column(String(50), nullable=False)
+    team_name = Column(String(100), nullable=False)
+    games_played = Column(Integer, nullable=False)
+    wins = Column(Integer, nullable=False)
+    losses = Column(Integer, nullable=False)
+    ties = Column(Integer, default=0)
+    win_rate = Column(Float, nullable=False)
+    ranking = Column(Integer, nullable=False)
+    division = Column(String(50), nullable=True)
+    last_updated = Column(DateTime, server_default=func.now(), onupdate=func.now())

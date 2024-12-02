@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mypage</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #ffffff;
+        }
+        header {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 10px 20px;
+            border-bottom: 1px solid #ddd;
+        }
+        header h1 {
+            font-size: 1.5rem;
+            color: #3f51b5;
+            font-weight: bold;
+        }
+        .content {
+            padding: 20px;
+        }
+        .section-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .settings-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .settings-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            border-bottom: 1px solid #ddd;
+            cursor: pointer;
+        }
+        .settings-item:hover {
+            background-color: #f9f9f9;
+        }
+        .settings-item span {
+            font-size: 1rem;
+        }
+        .settings-item small {
+            font-size: 0.8rem;
+            color: #888;
+        }
+        .arrow {
+            font-size: 1.2rem;
+            color: #ccc;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Mypage</h1>
+    </header>
+    <div class="content">
+        <div class="section-title">계정 정보 변경 (미구현)</div>
+        <ul class="settings-list">
+            <li class="settings-item" onclick="location.href='/change-nickname'">
+                <div>
+                    <span>닉네임 변경</span>
+                    <small>1회 변경 가능</small>
+                </div>
+                <div class="arrow">›</div>
+            </li>
+            <li class="settings-item" onclick="location.href='/change-password'">
+                <span>PW 변경</span>
+                <div class="arrow">›</div>
+            </li>
+            <li class="settings-item" onclick="location.href='/change-email'">
+                <span>Email 변경</span>
+                <div class="arrow">›</div>
+            </li>
+        </ul>
+    </div>
+    {% include 'footer.html' %}
+</body>
+</html>

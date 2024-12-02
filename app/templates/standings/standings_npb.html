@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NPB Standings</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #ffffff;
+        }
+        header {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 10px 20px;
+            border-bottom: 1px solid #ddd;
+        }
+        header h1 {
+            font-size: 1.5rem;
+            color: #3f51b5;
+            font-weight: bold;
+        }
+        nav {
+            display: flex;
+            justify-content: space-around;
+            padding: 10px 0;
+            border-bottom: 1px solid #ddd;
+            background-color: #f9f9f9;
+        }
+        nav a {
+            font-size: 1rem;
+            color: #333;
+            text-decoration: none;
+            padding: 5px 10px;
+        }
+        nav a.active {
+            font-weight: bold;
+            color: #3f51b5;
+        }
+        .content {
+            padding: 20px;
+        }
+        .league-title {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .league-title h2 {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        .league-title img {
+            width: 100px;
+            margin-top: 10px;
+        }
+        .standings-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 0.9rem;
+        }
+        .standings-table th, .standings-table td {
+            border: 1px solid #ddd;
+            text-align: center;
+            padding: 10px;
+        }
+        .standings-table th {
+            background-color: #f1f1f1;
+            font-weight: bold;
+        }
+        footer {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            background-color: #ffffff;
+            border-top: 1px solid #ddd;
+            padding: 10px 0;
+        }
+        footer .icon {
+            font-size: 1.2rem;
+            color: #333;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>NPB Standings</h1>
+    </header>
+    <nav>
+        <a href="/standings/kbo" class="{% if league == 'KBO' %}active{% endif %}">KBO</a>
+        <a href="/standings/mlb" class="{% if league == 'MLB' %}active{% endif %}">MLB</a>
+        <a href="/standings/npb" class="{% if league == 'NPB' %}active{% endif %}">NPB</a>
+    </nav>
+    <div class="content">
+        <div class="league-title">
+            <h2>{{ league }}</h2>
+            <img src="/static/logo/{{ league|lower }}.png" alt="{{ league }} Logo">
+        </div>
+        {% for division, teams in divisions.items() %}
+        <section>
+            <h2>{{ division }}</h2>
+            <table class="standings-table">
+                <thead>
+                    <tr>
+                        <th>순위</th>
+                        <th>팀</th>
+                        <th>경기</th>
+                        <th>승</th>
+                        <th>무</th>
+                        <th>패</th>
+                        <th>승률</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for team in teams %}
+                    <tr>
+                        <td>{{ team.ranking }}</td>
+                        <td>{{ team.team_name }}</td>
+                        <td>{{ team.games_played }}</td>
+                        <td>{{ team.wins }}</td>
+                        <td>{{ team.ties }}</td>
+                        <td>{{ team.losses }}</td>
+                        <td>{{ "%.3f" | format(team.win_rate) }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </section>
+        {% endfor %}
+    </div>
+    {% include 'footer.html' %}
+</body>
+</html>

@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Community</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #ffffff;
+        }
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            border-bottom: 1px solid #ddd;
+        }
+        header h1 {
+            font-size: 1.5rem;
+            color: #3f51b5;
+            font-weight: bold;
+        }
+        header .search {
+            font-size: 1.2rem;
+            color: #333;
+            cursor: pointer;
+        }
+        nav {
+            display: flex;
+            justify-content: space-around;
+            padding: 10px 0;
+            border-bottom: 1px solid #ddd;
+            background-color: #f9f9f9;
+        }
+        nav a {
+            font-size: 1rem;
+            color: #333;
+            text-decoration: none;
+            padding: 5px 10px;
+        }
+        nav a.active {
+            font-weight: bold;
+            color: #3f51b5;
+        }
+        .content {
+            padding: 20px;
+        }
+        .section-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .hot-posts {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        .hot-post {
+            flex: 1;
+            text-align: center;
+        }
+        .hot-post img {
+            width: 100%;
+            border-radius: 8px;
+        }
+        .hot-post p {
+            font-size: 0.9rem;
+            margin-top: 5px;
+        }
+        .latest-posts {
+            margin-bottom: 60px;
+        }
+        .latest-post {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
+        }
+        .latest-post p {
+            flex: 1;
+            margin: 0;
+            font-size: 0.9rem;
+        }
+        .latest-post img {
+            width: 50px;
+            height: 50px;
+            border-radius: 8px;
+        }
+        footer {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            background-color: #ffffff;
+            border-top: 1px solid #ddd;
+            padding: 10px 0;
+        }
+        footer .icon {
+            font-size: 1.2rem;
+            color: #333;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Community</h1>
+        <div class="search">🔍</div>
+    </header>
+    <nav>
+        <a href="#" class="active">전체</a>
+        <a href="#">자유게시판</a>
+        <a href="#">KBO</a>
+        <a href="#">MLB</a>
+        <a href="#">NPB</a>
+    </nav>
+    <div class="content">
+        <div class="section-title">전체 HOT 글</div>
+        <div class="hot-posts">
+            <div class="hot-post">
+                <img src="https://via.placeholder.com/100" alt="Hot post 1">
+                <p>Lorem ipsum dolor sit amet</p>
+            </div>
+            <div class="hot-post">
+                <img src="https://via.placeholder.com/100" alt="Hot post 2">
+                <p>Lorem ipsum dolor sit amet</p>
+            </div>
+            <div class="hot-post">
+                <img src="https://via.placeholder.com/100" alt="Hot post 3">
+                <p>Lorem ipsum dolor sit amet</p>
+            </div>
+            <div class="hot-post">
+                <img src="https://via.placeholder.com/100" alt="Hot post 4">
+                <p>Lorem ipsum dolor sit amet</p>
+            </div>
+        </div>
+        <div class="section-title">전체 최신글</div>
+        <div class="latest-posts">
+            <div class="latest-post">
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                <img src="https://via.placeholder.com/50" alt="Latest post 1">
+            </div>
+            <div class="latest-post">
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                <img src="https://via.placeholder.com/50" alt="Latest post 2">
+            </div>
+            <div class="latest-post">
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                <img src="https://via.placeholder.com/50" alt="Latest post 3">
+            </div>
+        </div>
+    </div>
+    {% include 'footer.html' %}
+</body>
+</html>

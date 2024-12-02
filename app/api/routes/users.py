@@ -41,3 +41,7 @@ def login_user(login_data: UserLogin, db: Session = Depends(get_db)):
         raise HTTPException(status_code=401, detail="Invalid Password")
 
     return {"message": "Login successful", "username": user.username}
+
+@router.get("/mypage", response_class="HTMLResponse")
+async def signup_form(request: Request):
+    return templates.TemplateResponse("mypage.html", {"request": request})

@@ -70,3 +70,21 @@ class VoteOut(BaseModel):
 
     class Config:
         from_attributes = True
+
+class StandingsBase(BaseModel):
+    league: str
+    team_name: str
+    games_played: int
+    wins: int
+    losses: int
+    ties: Optional[int] = 0
+    win_rate: float
+    rank: int
+    division: str
+
+class StandingsInDB(StandingsBase):
+    id: int
+    last_updated: Optional[str]
+
+    class Config:
+        orm_mode = True
