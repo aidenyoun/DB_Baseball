@@ -19,7 +19,7 @@ templates = Jinja2Templates(directory="app/templates")
 app.mount("/static", StaticFiles(directory="app/static"), name="static")
 
 router = APIRouter()
-app.include_router(community.router, tags=["Community"])
+app.include_router(community.router, prefix="/community", tags=["Community"])
 app.include_router(users.router, prefix="/users", tags=["Users"])
 app.include_router(standings.router, tags=["standings"])
 

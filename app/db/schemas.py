@@ -21,23 +21,40 @@ class UserLogin(BaseModel):
     email: EmailStr
     password: str
 
+# Board
+class BoardOut(BaseModel):
+    board_id: int
+    league: str
+    description: Optional[str]
+
+    class Config:
+        from_attributes = True
+
 # Post 스키마
-class PostCreate(BaseModel):
+class PostBase(BaseModel):
     board_id: int
     title: str
     content: str
 
-class PostOut(BaseModel):
+class PostCreate(PostBase):
+    pass
+
+class PostOut(PostBase):
     post_id: int
-    board_id: int
     user_id: int
-    title: str
-    content: str
     created_at: datetime
     updated_at: datetime
 
     class Config:
         from_attributes = True
+
+class PostUpdate(BaseModel):
+    title: Optional[str] = None  # 제목은 선택적으로 수정 가능
+    content: Optional[str] = None  # 내용도 선택적으로 수정 가능
+
+    class Config:
+        from_attributes = True  # SQLAlchemy 객체와 호환 가능
+
 
 # Comment 스키마
 class CommentCreate(BaseModel):

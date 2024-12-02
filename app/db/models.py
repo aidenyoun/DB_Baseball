@@ -18,9 +18,8 @@ class User(Base):
 class Board(Base):
     __tablename__ = "Board"
     board_id = Column(Integer, primary_key=True, index=True)
-    league = Column(String(50), nullable=False)
-    team = Column(String(50))
-    description = Column(Text)
+    league = Column(String(50), nullable=False, unique=True)
+    description = Column(Text, nullable=True)
 
     posts = relationship("Post", back_populates="board")
 
