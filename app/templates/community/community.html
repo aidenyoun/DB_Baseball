@@ -115,6 +115,12 @@
             </tbody>
         </table>
     </div>
-    {% include 'footer.html' %}
+    <div class="board-buttons">
+        <button onclick="window.location.href='/community/create'"> 게시글 작성 </button>
+    </div>
+    <div class="board-buttons">
+        <button type="button" onclick="window.location.href='/users/logout'">로그아웃</button>
+    </div>
+    {% include '/community/footer.html' %}
 </body>
 </html>

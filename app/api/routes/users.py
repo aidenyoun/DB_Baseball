@@ -1,10 +1,11 @@
-from fastapi import APIRouter, Depends, HTTPException
+from fastapi import APIRouter, Depends, HTTPException, Response, Request
 from fastapi.templating import Jinja2Templates
-from fastapi import Request
 from sqlalchemy.orm import Session
 from app.db.dependencies import get_db
 from app.db.models import User
 from app.db.schemas import UserCreate, UserLogin
+from app.session import create_session, clear_session
+
 from passlib.hash import bcrypt
 
 templates = Jinja2Templates(directory="app/templates/users")
@@ -31,8 +32,12 @@ def create_user(user: UserCreate, db: Session = Depends(get_db)):
 async def signup_form(request: Request):
     return templates.TemplateResponse("login.html", {"request": request})
 
+# @router.post("/login")
+#     create_session(response, user.user_id)
+
+
 @router.post("/login")
-def login_user(login_data: UserLogin, db: Session = Depends(get_db)):
+def login_user(login_data: UserLogin, response: Response, db: Session = Depends(get_db)):
     user = db.query(User).filter(User.email == login_data.email).first()
 
     if not user:
@@ -40,7 +45,15 @@ def login_user(login_data: UserLogin, db: Session = Depends(get_db)):
     if not bcrypt.verify(login_data.password, user.password_hash):
         raise HTTPException(status_code=401, detail="Invalid Password")
 
+    create_session(response, user.user_id)
+
     return {"message": "Login successful", "username": user.username}
+
+
+@router.get("/logout")
+def logout_user(response: Response, request: Request):
+    clear_session(response)
+    return templates.TemplateResponse("login.html", {"request": request})
 
 @router.get("/mypage", response_class="HTMLResponse")
 async def signup_form(request: Request):

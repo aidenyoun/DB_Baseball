@@ -30,8 +30,8 @@ class Post(Base):
     user_id = Column(Integer, ForeignKey("User.user_id"), nullable=False)
     title = Column(String(255), nullable=False)
     content = Column(Text, nullable=False)
-    created_at = Column(DateTime, default="CURRENT_TIMESTAMP")
-    updated_at = Column(DateTime, default="CURRENT_TIMESTAMP")
+    created_at = Column(DateTime, server_default=func.now())
+    updated_at = Column(DateTime, server_default=func.now(), onupdate=func.now())
 
     board = relationship("Board", back_populates="posts")
     author = relationship("User", back_populates="posts")
