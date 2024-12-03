@@ -2,7 +2,7 @@ import uvicorn
 from fastapi import FastAPI, APIRouter, Request
 from fastapi.templating import Jinja2Templates
 from fastapi.staticfiles import StaticFiles
-from app.api.routes import users,community,standings
+from app.api.routes import users, community, standings, game_result
 from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
@@ -22,6 +22,7 @@ router = APIRouter()
 app.include_router(community.router, prefix="/community", tags=["Community"])
 app.include_router(users.router, prefix="/users", tags=["Users"])
 app.include_router(standings.router, tags=["standings"])
+app.include_router(game_result.router, tags=["game_result"])
 
 if __name__ == "__main__":
     uvicorn.run(app, host="0.0.0.0", port=8000)
